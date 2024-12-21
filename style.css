@@ -1,0 +1,106 @@
+
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(45deg, #f5c600, #ff5733);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(45deg, #ffc107, #ff8c00);
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #333;
+            border-radius: 10px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            position: fixed;
+            width: 100%;
+            z-index: 10;
+        }
+
+        .header .logo {
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .header nav {
+            margin-right: 30px; /* Move navigation slightly away from the scrollbar */
+        }
+
+        .header nav ul {
+            list-style-type: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header nav ul li {
+            margin: 0 15px;
+        }
+
+        .header nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .header nav ul li a:hover {
+            color: #f5c600;
+        }
+
+        .portfolio {
+            padding: 100px 20px;
+            background-color: rgba(17, 17, 17, 0.8);
+            max-width: 800px; /* Restrict the width of the gallery */
+            margin: 0 auto;
+        }
+
+        .portfolio h2 {
+            color: white;
+            text-align: center;
+            font-size: 3rem;
+        }
+
+        .portfolio .gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .portfolio .gallery .gallery-item {
+            background-size: cover;
+            background-position: center;
+            height: 200px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+
+        .portfolio .gallery .gallery-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.8);
+        }
+
+        .portfolio .gallery .gallery-item:hover ~ body {
+            background-image: inherit;
+        }
+
+        .portfolio .gallery .gallery-item:hover {
+            content: "url('path-of-hover.jpg');"
+         "('transform affect background-tranform editing.');"
+        }

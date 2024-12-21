@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MJ BALAGOT - Shot of Espresso</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #000;
+            margin: 0;
+            padding: 0;
+        }
+
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(45deg, #f5c600, #ff5733);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(45deg, #ffc107, #ff8c00);
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #333;
+            border-radius: 10px;
+        }
+
+        header {
+            background: #111;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .back-to-portfolio {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            color: #f5c600;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: bold;
+            border: 2px solid #f5c600;
+            border-radius: 25px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .back-to-portfolio:hover {
+            background: linear-gradient(45deg, #f5c600, #ff8c00);
+            color: #000;
+            border-color: #ff8c00;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+            transform: scale(1.1);
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            padding: 50px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .gallery .gallery-item {
+            background-size: cover;
+            background-position: center;
+            height: 200px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+            cursor: pointer;
+            position: relative;
+        }
+
+        .gallery .gallery-item:hover {
+            transform: scale(1.02);
+            transition: transform 0.3s ease;
+        }
+
+        .preview-overlay img {
+        max-width: 90%;
+        max-height: 90%;
+        border-radius: 10px;
+        opacity: 0;
+        transform: scale(0.8);
+        transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .preview-overlay.active img {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    .preview-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.9);
+        z-index: 100;
+        justify-content: center;
+        align-items: center;
+        transition: opacity 0.3s ease;
+        opacity: 0;
+    }
+
+    .preview-overlay.active {
+        display: flex;
+        opacity: 1;
+    }
+        footer {
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>MJ BALAGOT</h1>
+        <p>21st Birthday Shoot</p>
+        <a class="back-to-portfolio" href="portfolio.html">← Back to Portfolio</a>
+    </header>
+    <div class="gallery">
+        <div class="gallery-item" style="background-image: url('gallery-1/img1.JPG');" data-full="gallery-1/img1.JPG"></div>
+        <div class="gallery-item" style="background-image: url('gallery-1/img2.JPG');" data-full="gallery-1/img2.JPG"></div>
+        <div class="gallery-item" style="background-image: url('gallery-1/img3.JPG');" data-full="gallery-1/img3.JPG"></div>
+        <div class="gallery-item" style="background-image: url('gallery-1/img4.JPG');" data-full="gallery-1/img4.JPG"></div>
+        <div class="gallery-item" style="background-image: url('gallery-1/img5.JPG');" data-full="gallery-1/img5.JPG"></div>
+        <div class="gallery-item" style="background-image: url('gallery-1/img6.JPG');" data-full="gallery-1/img6.JPG"></div>
+        <div class="gallery-item" style="background-image: url('gallery-1/img7.JPG');" data-full="gallery-1/img7.JPG"></div>
+        <div class="gallery-item" style="background-image: url('gallery-1/img8.JPG');" data-full="gallery-1/img8.JPG"></div>
+        <div class="gallery-item" style="background-image: url('gallery-1/img9.JPG');" data-full="gallery-1/img9.JPG"></div>
+        <div class="gallery-item" style="background-image: url('gallery-1/img10.JPG');" data-full="gallery-1/img10.JPG"></div>
+        <div class="gallery-item" style="background-image: url('gallery-1/img11.JPG');" data-full="gallery-1/img11.JPG"></div>
+        <div class="gallery-item" style="background-image: url('gallery-1/img12.JPG');" data-full="gallery-1/img12.JPG"></div>
+        <div class="gallery-item" style="background-image: url('gallery-1/img13.JPG');" data-full="gallery-1/img13.JPG"></div>
+        <div class="gallery-item" style="background-image: url('gallery-1/img14.JPG');" data-full="gallery-1/img14.JPG"></div>
+        <div class="gallery-item" style="background-image: url('gallery-1/img15.JPG');" data-full="gallery-1/img15.JPG"></div>
+    </div>
+
+    <div class="preview-overlay">
+        <img src="" alt="Preview">
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Shot of Espresso. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        const previewOverlay = document.querySelector('.preview-overlay');
+        const previewImage = previewOverlay.querySelector('img');
+
+        galleryItems.forEach(item => {
+        item.addEventListener('click', () => {
+            const fullImageSrc = item.getAttribute('data-full');
+            previewImage.src = fullImageSrc;
+            previewOverlay.classList.add('active');
+
+            // Trigger smooth animation
+            setTimeout(() => {
+                previewImage.style.opacity = '1';
+                previewImage.style.transform = 'scale(1)';
+            }, 10);
+        });
+    });
+
+        previewOverlay.addEventListener('click', (e) => {
+        if (e.target !== previewImage) {
+            previewImage.style.opacity = '0';
+            previewImage.style.transform = 'scale(0.8)';
+            setTimeout(() => {
+                previewOverlay.classList.remove('active');
+                previewImage.src = '';
+            }, 300); // Match with transition duration
+        }
+    });
+    </script>
+</body>
+</html>

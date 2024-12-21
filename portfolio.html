@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Shot of Espresso</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #000000;
+            margin: 0;
+            padding: 0;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        #background-overlay {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transform: scale(1);
+            transition: opacity 1s ease, transform 1.5s ease;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(45deg, #f5c600, #ff5733);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(45deg, #ffc107, #ff8c00);
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #333;
+            border-radius: 10px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            position: fixed;
+            width: 100%;
+            z-index: 10;
+        }
+
+        .header .logo {
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .header nav ul {
+            list-style-type: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header nav ul li {
+            margin: 0 5px;
+        }
+
+        .header nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+            margin-right: 25px;
+        }
+
+        .header nav ul li a:hover {
+            color: #f5c600;
+        }
+
+        .portfolio {
+            flex: 1;
+            padding: 100px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .portfolio h2 {
+            color: white;
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 40px;
+        }
+
+        .portfolio .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .portfolio .gallery .gallery-item {
+            background-size: cover;
+            background-position: center;
+            aspect-ratio: 1; /* Ensures square items */
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .portfolio .gallery .gallery-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.8);
+        }
+
+        footer {
+            color: rgb(255, 255, 255);
+            text-align: center;
+            padding: 15px;
+            font-size: 1rem;
+            border-top: 0px solid rgba(255, 255, 255, 0.1);
+            margin-top: bottom;
+            position: 0px flex;
+        }
+    </style>
+    <script>
+        function changeBackground(image) {
+            const overlay = document.getElementById('background-overlay');
+            if (image) {
+                overlay.style.backgroundImage = `url(${image})`;
+                overlay.style.opacity = '1';
+                overlay.style.transform = 'scale(1.1)';
+            } else {
+                overlay.style.opacity = '0';
+                overlay.style.transform = 'scale(1)';
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="background-overlay"></div>
+    <header class="header">
+        <div class="logo">SHOT OF ESPRESSO</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="services.html">Services</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section class="portfolio">
+        <h2>Our Portfolio</h2>
+        <div class="gallery">
+            <a href="gallery1.html" class="gallery-item" 
+                style="background-image: url('gallery-item/photo1.jpg');" 
+                onmouseover="changeBackground('gallery-item/photo1.jpg')" 
+                onmouseout="changeBackground('')">
+            </a>
+            <a href="gallery2.html" class="gallery-item" 
+                style="background-image: url('gallery-item/photo2.jpg');" 
+                onmouseover="changeBackground('gallery-item/photo2.jpg')" 
+                onmouseout="changeBackground('')">
+            </a>
+            <a href="gallery3.html" class="gallery-item" 
+                style="background-image: url('gallery-item/photo3.jpg');" 
+                onmouseover="changeBackground('gallery-item/photo3.jpg')" 
+                onmouseout="changeBackground('')">
+            </a>
+            <a href="gallery4.html" class="gallery-item" 
+                style="background-image: url('gallery-item/DSC_9118.jpg');" 
+                onmouseover="changeBackground('gallery-item/DSC_9118.jpg')" 
+                onmouseout="changeBackground('')">
+            </a>
+            <a href="gallery5.html" class="gallery-item" 
+                style="background-image: url('gallery-item/photo5.jpg');" 
+                onmouseover="changeBackground('gallery-item/photo5.jpg')" 
+                onmouseout="changeBackground('')">
+            </a>
+            <a href="gallery6.html" class="gallery-item" 
+                style="background-image: url('gallery-item/photo6.jpg');" 
+                onmouseover="changeBackground('gallery-item/photo6.jpg')" 
+                onmouseout="changeBackground('')">
+            </a>
+            <a href="gallery7.html" class="gallery-item" 
+                style="background-image: url('gallery-item/photo7.jpg');" 
+                onmouseover="changeBackground('gallery-item/photo7.jpg')" 
+                onmouseout="changeBackground('')">
+            </a>
+            <a href="gallery8.html" class="gallery-item" 
+                style="background-image: url('gallery-item/photo8.jpg');" 
+                onmouseover="changeBackground('gallery-item/photo8.jpg')" 
+                onmouseout="changeBackground('')">
+            </a>
+            <a href="gallery9.html" class="gallery-item" 
+                style="background-image: url('gallery-item/photo9.jpg');" 
+                onmouseover="changeBackground('gallery-item/photo9.jpg')" 
+                onmouseout="changeBackground('')">
+            </a>
+            <a href="gallery10.html" class="gallery-item" 
+                style="background-image: url('gallery-item/photo10.jpg');" 
+                onmouseover="changeBackground('gallery-item/photo10.jpg')" 
+                onmouseout="changeBackground('')">
+            </a>
+        </div>
+    </section>
+    <footer>
+    </footer>
+</body>
+</html>
