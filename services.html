@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services - Shot of Espresso</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #000000;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+        }
+
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(45deg, #f5c600, #ff5733);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(45deg, #ffc107, #ff8c00);
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #333;
+            border-radius: 10px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px 40px;
+            background: rgba(0, 0, 0, 0.9);
+            position: fixed;
+            width: 100%;
+            z-index: 10;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.7);
+        }
+
+        .header nav ul {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .header nav ul li a:hover {
+            color: #f5c600;
+        }
+
+        .services {
+            padding: 100px 20px 50px;
+            text-align: center;
+        }
+
+        .services h1 {
+            font-size: 3rem;
+            color: #f5c600;
+            margin-bottom: 20px;
+            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
+        }
+
+        .services p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            color: #ffffff;
+            line-height: 1.8;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .service-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 0 20px;
+        }
+
+        .service-card {
+            background: linear-gradient(135deg, #1b1b1b, #222);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.8);
+        }
+
+        .service-card h2 {
+            font-size: 1.5rem;
+            color: #f5c600;
+            margin-bottom: 15px;
+        }
+
+        .service-card p {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #cccccc;
+            margin: 0;
+        }
+
+        .service-card button {
+            background-color: #f5c600;
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .service-card button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.5), 0 0 10px #f5c600, 0 0 20px #f5c600;
+        }
+
+        .service-description {
+            display: none;
+            margin-top: 15px;
+            color: #cccccc;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .service-card.active .service-description {
+            display: block;
+        }
+
+        .book-now-btn {
+            display: inline-block;
+            background: linear-gradient(45deg, #f5c600, #f5c600);
+            color: #000;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            padding: 15px 30px;
+            border-radius: 50px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-top: 50px;
+        }
+
+        .book-now-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.7), 0 0 15px #f5c600;
+        }
+
+        footer {
+            background: #111;
+            color: white;
+            text-align: center;
+            padding: 25px;
+            font-size: 1rem;
+            border-top: 0px solid rgba(255, 255, 255, 0.1);
+            margin-top: 285px;
+        }
+
+        footer div a {
+            color: #f5c600;
+            margin: 0 10px;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer div a:hover {
+            color: #ffc107;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: #222;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            width: 90%;
+            max-width: 500px;
+            color: #fff;
+        }
+
+        .modal-content h2 {
+            margin-top: 0;
+            color: #f5c600;
+        }
+
+        .modal-content label {
+            display: block;
+            margin: 15px 0 5px;
+        }
+
+        .modal-content input, .modal-content select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+        }
+
+        .modal-content button {
+            background-color: #f5c600;
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .modal-content button:hover {
+            background-color: #ffc107;
+        }
+
+        .modal-content .close-btn {
+            background: #ff5733;
+            color: white;
+            float: right;
+            padding: 5px 10px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        .modal-content .close-btn:hover {
+            background: #ff8c00;
+        }
+
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="services.html">Services</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section class="services">
+        <h1>Our Services</h1>
+        <p>We offer a range of professional photography and videography services to capture moments, tell stories, and bring your vision to life.</p>
+        <div class="service-cards">
+            <div class="service-card">
+                <h2>WEDDING</h2>
+                <button onclick="toggleDropdown(this)">Show Details</button>
+                <div class="service-description">
+                    From weddings to corporate events, we capture every special moment with creativity and precision.
+                </div>
+            </div>
+            <div class="service-card">
+                <h2>DEBUT</h2>
+                <button onclick="toggleDropdown(this)">Show Details</button>
+                <div class="service-description">
+                    <p> We offer pre-debut and debut shoot for as low as 4,000 pesos.</p>
+                    <p> PHOTO ONLY</p>
+                    <p>PRE-DEBUT - 4,000 pesos DEBUT- 4,500 pesos</p>
+                    <p>PHOTO AND VIDEO</p>
+                    <p>PRE-DEBUT - 8,000 pesos. DEBUT - 9,000 pesos</p>
+                    <p>Additionals - drone shot, albums, picture frame.</p>
+                    <p> Drone shot-3,000 pesos.
+                        Album-100 pages 4r size - 5,000 pesos.
+                        Picture frame- 350 each 8x10 size.
+                    </p>
+                </div>
+            </div>
+            <div class="service-card">
+                <h2>PRODUCT SHOOT</h2>
+                <button onclick="toggleDropdown(this)">Show Details</button>
+                <div class="service-description">
+                    Showcase your products in the best light with high-quality, attention-grabbing images.
+                </div>
+            </div>
+            <div class="service-card">
+                <h2>OTHER EVENTS/SHOOTS</h2>
+                <button onclick="toggleDropdown(this)">Show Details</button>
+                <div class="service-description">
+                    Birthdays, Christening, Reunions, Corporate events, etc.
+                </div>
+            </div>
+        </div>
+        <div style="text-align: center;">
+            <button class="book-now-btn" onclick="openModal()">Book Now</button>
+        </div>
+    </section>
+
+    <div class="modal" id="booking-modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h2>Book Your Event</h2>
+            <form id="booking-form">
+                <label for="client-name">Name:</label>
+                <input type="text" id="client-name" name="client-name" required>
+        
+                <label for="event-date">Date of Event:</label>
+                <input type="date" id="event-date" name="event-date" required>
+        
+                <label for="contact-number">Contact Number:</label>
+                <input type="tel" id="contact-number" name="contact-number" required>
+        
+                <label for="event-type">Event Type:</label>
+                <select id="event-type" name="event-type" required>
+                    <option value="wedding">Wedding</option>
+                    <option value="debut">Debut</option>
+                    <option value="product-shoot">Product Shoot</option>
+                    <option value="other">Other Events/Shoots</option>
+                </select>
+        
+                <button type="button" onclick="submitForm()">Submit</button>
+            </form>
+        
+            <script src="server.js"></script>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; <span id="current-year"></span> Shot of Espresso. All Rights Reserved.</p>
+        <div>
+            <a href="https://facebook.com" target="_blank">Facebook</a>
+            <a href="https://instagram.com" target="_blank">Instagram</a>
+            <a href="https://twitter.com" target="_blank">Twitter</a>
+        </div>
+    </footer>
+    <script>
+        function toggleDropdown(button) {
+            const card = button.parentElement;
+            card.classList.toggle('active');
+            button.textContent = card.classList.contains('active') ? 'Hide Details' : 'Show Details';
+        }
+
+        function openModal() {
+            document.getElementById('booking-modal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('booking-modal').style.display = 'none';
+        }
+
+        document.getElementById("current-year").textContent = new Date().getFullYear();
+
+        function submitForm() {
+    const formData = {
+        name: document.getElementById('client-name').value,
+        eventDate: document.getElementById('event-date').value,
+        contactNumber: document.getElementById('contact-number').value,
+        eventType: document.getElementById('event-type').value,
+    };
+
+    fetch('/submit-form', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+    })
+        .then((response) => {
+            if (response.ok) {
+                alert('Form submitted successfully!');
+            } else {
+                alert('Error submitting the form.');
+            }
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+}
+    </script>
+</body>
+</html>
