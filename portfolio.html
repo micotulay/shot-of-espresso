@@ -3,7 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore our creative portfolio showcasing photography and design projects.">
+    <meta name="keywords" content="portfolio, photography, design, creative projects">
+    <meta name="author" content="Shot of Espresso">
     <title>Portfolio - Shot of Espresso</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -29,9 +35,16 @@
             background-position: center;
             opacity: 0;
             transform: scale(1);
-            transition: opacity 1s ease, transform 1.5s ease;
+            transition: opacity 2s ease, transform 1.5s ease;
             pointer-events: none;
             z-index: -1;
+            animation: moveBackground 30s linear infinite;
+        }
+
+        @keyframes moveBackground {
+            0% { background-position: 0% 0%; }
+            50% { background-position: 100% 100%; }
+            100% { background-position: 0% 0%; }
         }
 
         ::-webkit-scrollbar {
@@ -114,27 +127,58 @@
         }
 
         .portfolio .gallery .gallery-item {
-            background-size: cover;
-            background-position: center;
-            aspect-ratio: 1; /* Ensures square items */
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
+    background-size: cover;
+    background-position: center;
+    aspect-ratio: 1;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
 
-        .portfolio .gallery .gallery-item:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.8);
-        }
+.portfolio .gallery .gallery-item:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.9);
+}
+
+.gallery-item:nth-child(1):hover {
+    box-shadow: 0 0 25px #ff00ff, 0 0 50px #ff00ff;
+}
+.gallery-item:nth-child(2):hover {
+    box-shadow: 0 0 25px #00ffff, 0 0 50px #00ffff;
+}
+.gallery-item:nth-child(3):hover {
+    box-shadow: 0 0 25px #00ff00, 0 0 50px #00ff00;
+}
+.gallery-item:nth-child(4):hover {
+    box-shadow: 0 0 25px #ffff00, 0 0 50px #ffff00;
+}
+.gallery-item:nth-child(5):hover {
+    box-shadow: 0 0 25px #ff6600, 0 0 50px #ff6600;
+}
+.gallery-item:nth-child(6):hover {
+    box-shadow: 0 0 25px #6600ff, 0 0 50px #6600ff;
+}
+.gallery-item:nth-child(7):hover {
+    box-shadow: 0 0 25px #ff3366, 0 0 50px #ff3366;
+}
+.gallery-item:nth-child(8):hover {
+    box-shadow: 0 0 25px #33ff66, 0 0 50px #33ff66;
+}
+.gallery-item:nth-child(9):hover {
+    box-shadow: 0 0 25px #66ccff, 0 0 50px #66ccff;
+}
+.gallery-item:nth-child(10):hover {
+    box-shadow: 0 0 25px #ff0033, 0 0 50px #ff0033;
+}
+
 
         footer {
             color: rgb(255, 255, 255);
             text-align: center;
             padding: 15px;
             font-size: 1rem;
-            border-top: 0px solid rgba(255, 255, 255, 0.1);
-            margin-top: bottom;
-            position: 0px flex;
         }
     </style>
     <script>
@@ -148,6 +192,23 @@
                 overlay.style.opacity = '0';
                 overlay.style.transform = 'scale(1)';
             }
+        }
+
+        function openLightbox(imageUrl) {
+            const lightbox = document.createElement('div');
+            lightbox.style.position = 'fixed';
+            lightbox.style.top = '0';
+            lightbox.style.left = '0';
+            lightbox.style.width = '100%';
+            lightbox.style.height = '100%';
+            lightbox.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+            lightbox.style.display = 'flex';
+            lightbox.style.justifyContent = 'center';
+            lightbox.style.alignItems = 'center';
+            lightbox.style.zIndex = '1000';
+            lightbox.innerHTML = `<img src="${imageUrl}" style="max-width: 100%; max-height: 100%;">`;
+            lightbox.onclick = () => lightbox.remove();
+            document.body.appendChild(lightbox);
         }
     </script>
 </head>
@@ -217,8 +278,12 @@
                 onmouseout="changeBackground('')">
             </a>
         </div>
-    </section>
-    <footer>
-    </footer>
+</section>
+<footer>
+    <p>&copy; <span id="year"></span> Shot of Espresso. All rights reserved.</p>
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</footer>
 </body>
 </html>
